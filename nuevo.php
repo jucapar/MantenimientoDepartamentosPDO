@@ -59,7 +59,7 @@
                 'DescDepartamento' => ''
             );
 
-            if (filter_has_var(INPUT_POST, 'enviar')) {//Si hemos pulsado el boton de Enviar
+            if (filter_has_var(INPUT_POST, 'Crear Registro')) {//Si hemos pulsado el boton de Enviar
                 //Comenzamos las validaciones de datos
                 //Ejecutamos la funcion de validacion y recogemos el valor devuelto
                 $valida = validarCadenaAlfanumerica($_POST['CodDepartamento'], MIN, MAX);
@@ -107,7 +107,7 @@
                     <input type="text" name="DescDepartamento" value="<?php echo $departamento['DescDepartamento']; ?>" class="<?PHP echo $erroresEstilos['DescDepartamento']; ?>"><br /><br />
                     <?PHP echo $erroresCampos['DescDepartamento']; ?>
 
-                    <input type="submit" name="enviar" value="Enviar">
+                    <input type="submit" name="Crear Registro" value="Crear Registro">
 
                 </form>
                 <?PHP
