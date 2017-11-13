@@ -7,9 +7,9 @@
         <link rel="stylesheet" type="text/css" href="css/w3.css">
         <title>Mantenimiento Departamentos</title>
     </head>
-    <body>
-
-
+    <body >
+        <div class="w3-container w3-light-blue" style="width:60%; margin:auto; padding: 40px; height: 100%;">
+            <h1>Mantenimiento Departamentos</h1>
         <?php
         /*
           Autor: Juan Carlos Pastor Regueras
@@ -75,12 +75,12 @@
 //Si no hemos pulsado el boton, o ha habido un error en la validacion mostrarmos el formulario
             ?>
 
-            <form action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <form class="w3-container" style="width:30%" action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                 <label for="DescDepartamento">Descripcion:</label>
-                <input type="text" name="DescDepartamento" value="<?php echo $DescDepartamento; ?>" >
+                <input class="w3-input" type="text" name="DescDepartamento" value="<?php echo $DescDepartamento; ?>" >
                 <!--<?PHP echo $errorDepartamento; ?>-->
-                <input type="submit" name="Buscar" value="Buscar">
+                <input class="w3-input" type="submit" name="Buscar" value="Buscar">
 
             </form>
             <br />
@@ -95,8 +95,8 @@
             $sentencia->bindParam(":DescDepartamento", $DescDepartamento);
             //La ejecutamos
             $sentencia->execute();
-            echo "<table>";
-            echo "<tr><td>Codigo</td><td>Descripcion</td></tr>";
+            echo "<table class='w3-table w3-striped'>";
+            echo "<tr><th>Codigo</th><th>Descripcion</th></tr>";
             while ($departamento = $sentencia->fetch(PDO::FETCH_OBJ)) {//Mientras haya resultados, se muestran formateados. FETCH avanza el puntero
                 echo "<tr>";
                 echo "<td>" . $departamento->CodDepartamento . "</td>";
@@ -106,6 +106,7 @@
                 echo "</tr>";
             }
             echo "</table>";
+            echo "</div>";
         } catch (PDOException $PdoE) {
             //Capturamos la excepcion en caso de que se produzca un error,mostramos el mensaje de error y deshacemos la conexion
             echo($PdoE->getMessage());
