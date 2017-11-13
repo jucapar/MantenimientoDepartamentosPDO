@@ -13,7 +13,7 @@
         <?php
         /*
           Autor: Juan Carlos Pastor Regueras
-          Nuevo 
+          Nuevo
           Fecha de modificacion: 13-11-2017
          */
         //Información de la base de datos. Host y nombre de la BD
@@ -62,7 +62,7 @@
             if (filter_has_var(INPUT_POST, 'Crear')) {//Si hemos pulsado el boton de Enviar
                 //Comenzamos las validaciones de datos
                 //Ejecutamos la funcion de validacion y recogemos el valor devuelto
-                $valida = validarCadenaAlfanumerica($_POST['CodDepartamento'], MIN, MAX);
+                $valida = validarCadenaAlfanumerica(limpiarCampos($_POST['CodDepartamento']), MIN, MAX);
                 //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                 if ($valida != 0) {
                     //Asignamos el error producido al valor correspondiente en el array de errores
@@ -74,12 +74,12 @@
                     //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                 } else {
                     //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
-                    $departamento['CodDepartamento'] = $_POST['CodDepartamento'];
+                    $departamento['CodDepartamento'] = limpiarCampos($_POST['CodDepartamento']);
                 }
 
 
                 //Ejecutamos la funcion de validacion y recogemos el valor devuelto
-                $valida = validarCadenaAlfanumerica($_POST['DescDepartamento']);
+                $valida = validarCadenaAlfanumerica(limpiarCampos($_POST['DescDepartamento']));
                 //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                 if ($valida != 0) {
                     //Asignamos el error producido al valor correspondiente en el array de errores
@@ -91,7 +91,7 @@
                     //Si no ha habido ningun error, guardamos el valor enviado en el array de departamento
                 } else {
                     //Si no ha habido ningun error, guardamos el valor enviado en el array de departamento
-                    $departamento['DescDepartamento'] = $_POST['DescDepartamento'];
+                    $departamento['DescDepartamento'] = limpiarCampos($_POST['DescDepartamento']);
                 }
             }
             //Si no hemos pulsado el boton, o ha habido un error en la validacion mostrarmos el formulario
@@ -124,7 +124,6 @@
                 if ($sentencia->execute()) {
                     header("Location: index.php");
                 }
-
                 unset($db);
             }
         } catch (PDOException $PdoE) {
