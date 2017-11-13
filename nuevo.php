@@ -95,7 +95,7 @@
                 }
             }
             //Si no hemos pulsado el boton, o ha habido un error en la validacion mostrarmos el formulario
-            if (!filter_has_var(INPUT_POST, 'enviar') || $error) {
+            if (!filter_has_var(INPUT_POST, 'Crear Registro') || $error) {
                 ?>
                 <form action="<?PHP echo $_SERVER['PHP_SELF']; ?>" method="post">
 
