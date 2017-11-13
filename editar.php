@@ -51,7 +51,7 @@
                 <?php
                 if (isset($_POST['Editar'])) {
                     
-                    
+                   
                     $nuevoCodDepartamento = $_POST['CodDepartamento'];
                     $nuevoDescDepartamento = $_POST['DescDepartamento'];
 
