@@ -93,7 +93,7 @@
                 echo "<td>" . $departamento->CodDepartamento . "</td>";
                 echo "<td>" . $departamento->DescDepartamento . "</td>";
                // echo "<td>" . $departamento->FechaBaja . "</td>";
-                echo "<td><a href='editar.php?CodDepartamento=$departamento->CodDepartamento'><img src='images/editar.png' width='20px' height='20px'/></a><a href='borrar.php'><img src='images/borrar.png'  width='20px' height='20px'/></a></td>";
+                echo "<td><a href='editar.php?CodDepartamento=$departamento->CodDepartamento'><img src='images/editar.png' width='20px' height='20px'/></a><a href='borrar.php?CodDepartamento=$departamento->CodDepartamento'><img src='images/borrar.png'  width='20px' height='20px'/></a></td>";
                 echo "</tr>";
             }
             echo "</table>";
