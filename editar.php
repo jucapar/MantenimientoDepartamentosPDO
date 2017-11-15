@@ -58,7 +58,8 @@
                     //Inyectamos los parametros  en el query
                     $sentencia->bindParam(":CodDepartamento", $CodDepartamentoBuscar);
                     //La ejecutamos
-                    if ($sentencia->execute()) {
+                    $sentencia->execute();
+                    if ($sentencia->rowCount() == 1) {
                         $departamento = $sentencia->fetch(PDO::FETCH_OBJ);
                         ?>
 
@@ -106,7 +107,7 @@
                             $sentencia->bindParam(":DescDepartamento", $departamento->DescDepartamento);
                             //La ejecutamos
                             if ($sentencia->execute()) {
-                                header("Location: index.php");
+                                header("Location: mantenimiento.php");
                             }
                         } else {
 
@@ -117,7 +118,8 @@
                     echo "<p>El departamento que quiere editar no existe</p>";
                 }
             } else {
-                header("Location: index.php");
+                header("Location: mantenimiento.php");
+               
 
             }
         } catch (PDOException $PdoE) {

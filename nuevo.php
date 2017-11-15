@@ -17,7 +17,7 @@
               Fecha de modificacion: 13-11-2017
              */
             //Información de la base de datos. Host y nombre de la BD
-            include "configDpto.php";
+            include "config/configDpto.php";
             try {
                 //Creamos la conexion a la base de datos
                 $db = new PDO(DATOSCONEXION, USER, PASSWORD);
@@ -25,7 +25,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 //Incluimos nuestra libreria de validacion
-                include "LibreriaValidacionFormularios.php";
+                include "librerias/LibreriaValidacionFormularios.php";
 
                 // Constantes para los valores maximos y minimos
                 define("MIN", 1);
@@ -76,7 +76,7 @@
                         //Si no ha habido ningun error, guardamos el valor enviado en el array de cuestionario
                         $departamento['CodDepartamento'] = limpiarCampos($_POST['CodDepartamento']);
                     }
-                    
+
                     $valida = validarCadenaAlfanumerica(limpiarCampos($_POST['CodDepartamento']), MIN, MAX);
                     //Si el valor es distinto de 0 ha habido un error y procedemos a tratarlo
                     if ($valida != 0) {
@@ -113,28 +113,33 @@
                     </form>
                 </div>
 
-        <?PHP
-    } else {
-        //Creamos la consulta
-        $consulta = "INSERT INTO Departamento (CodDepartamento,DescDepartamento) VALUES(:CodDepartamento,:DescDepartamento)";
-        //Preparamos la sentencia
-        $sentencia = $db->prepare($consulta);
-        //Inyectamos los parametros del insert en el query
-        $sentencia->bindParam(":CodDepartamento", $departamento['CodDepartamento']);
-        $sentencia->bindParam(":DescDepartamento", $departamento['DescDepartamento']);
-        //Ejecutamos la consulta
+                <?PHP
+            } else {
+                //Creamos la consulta
+                $consulta = "INSERT INTO Departamento (CodDepartamento,DescDepartamento) VALUES(:CodDepartamento,:DescDepartamento)";
+                //Preparamos la sentencia
+                $sentencia = $db->prepare($consulta);
+                //Inyectamos los parametros del insert en el query
+                $sentencia->bindParam(":CodDepartamento", $departamento['CodDepartamento']);
+                $sentencia->bindParam(":DescDepartamento", $departamento['DescDepartamento']);
+                //Ejecutamos la consulta
 
-        if ($sentencia->execute()) {
-            header("Location: index.php");
+                try {
+                    $sentencia->execute();
+                    header("Location: mantenimiento.php");
+                } catch (PDOException $PdoE) {
+                    echo "<p>Error al crear el nuevo departamento<p>";
+                    unset($db);
+                }
+
+                unset($db);
+            }
+        } catch (PDOException $PdoE) {
+            //Capturamos la excepcion en caso de que se produzca un error,mostramos el mensaje de error y deshacemos la conexion
+            echo($PdoE->getMessage());
+            unset($db);
         }
-        unset($db);
-    }
-} catch (PDOException $PdoE) {
-    //Capturamos la excepcion en caso de que se produzca un error,mostramos el mensaje de error y deshacemos la conexion
-    echo($PdoE->getMessage());
-    unset($db);
-}
-?>
+        ?>
 
 
     </body>

@@ -62,7 +62,7 @@
             $DescDepartamento = "";
 
             //Comienzo de la transacción para una serie de operaciones. Se desactiva el modo autocommit( El modo auto-commit significa que toda consulta que se ejecute tiene su propia transacción implícita
-            $db->beginTransaction();
+            
             //Preparamos la consulta
             $consulta = "INSERT INTO Departamento (CodDepartamento,DescDepartamento) VALUES (:CodDepartamento,:DescDepartamento)";
             //Preparamos la sentencia
@@ -82,6 +82,7 @@
                     //Si la ejecucion es correcta incrementamos el numero de registros correctos
                     try {
                         $sentencia->execute();
+                        
                     } catch (PDOException $PdoE) {
                         //Si la ejecucion de uno de los registros falla, mostramos por pantalla cual ha fallado
                         echo("<p>La insercion del registro $numRegistros ha fallado</p>");
@@ -90,8 +91,7 @@
                     echo("<p>El registro  $numRegistros no es valido</p>");
                 }
             }
-
-            $db->commit();
+            echo "<a href='mantenimiento.php'>Volver</a>";
         }
         unset($db);
         ?>
