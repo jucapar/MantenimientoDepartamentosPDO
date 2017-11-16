@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<departamentos>
+  <Departamento>
+    <CodDepartamento>FRA</CodDepartamento>
+    <DescDepartamento>Frances</DescDepartamento>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>IGL</CodDepartamento>
+    <DescDepartamento>Ingles</DescDepartamento>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>INF</CodDepartamento>
+    <DescDepartamento>Informatica</DescDepartamento>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>MAT</CodDepartamento>
+    <DescDepartamento>Matematicas</DescDepartamento>
+  </Departamento>
+</departamentos>

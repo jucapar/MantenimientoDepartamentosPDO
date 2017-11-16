@@ -91,6 +91,7 @@
                     echo("<p>El registro  $numRegistros no es valido</p>");
                 }
             }
+            echo "Importacion finalizada<br /><br />";
             echo "<a href='mantenimiento.php'>Volver</a>";
         }
         unset($db);
